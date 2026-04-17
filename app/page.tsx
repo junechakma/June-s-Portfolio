@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import Image from "next/image";
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "@/components/panel";
 import { Separator } from "@/components/separator";
 import { ProfileAvatar } from "@/components/profile-avatar";
@@ -10,10 +10,11 @@ import {
   MailIcon, PhoneIcon, MarsIcon, ArrowUpRightIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
+import { SimpleTooltip } from "@/components/ui/tooltip";
 // import { AsciiRain } from "@/components/ascii-rain";
 // import { ScrambleText } from "@/components/scramble-text";
 import { SnakeGame } from "@/components/snake-game";
-import { GitHubContributionGraph, GitHubContributionFallback } from "@/components/github-contributions";
+import { GitHubContributionGraph } from "@/components/github-contributions";
 import { getGitHubContributions } from "@/data/github-contributions";
 import { USER } from "@/data/user";
 import { SOCIAL_LINKS } from "@/data/social-links";
@@ -26,7 +27,8 @@ const JOB_ICONS: Record<string, React.ReactNode> = {
   "Lab In-Charge": <BriefcaseBusinessIcon />,
 };
 
-export default function Home() {
+export default async function Home() {
+  const contributions = await getGitHubContributions();
   return (
     <div className="mx-auto md:max-w-3xl">
 
@@ -54,6 +56,8 @@ export default function Home() {
         </div> */}
         <SnakeGame className="absolute inset-0 w-full h-full" />
       </div>
+
+      <div className="relative h-0 screen-line-after" />
 
       {/* ── Profile Header ───────────────────────────────────── */}
       <div className="screen-line-after flex border-x border-edge">
@@ -235,9 +239,7 @@ export default function Home() {
           <PanelTitle>GitHub</PanelTitle>
         </PanelHeader>
         <PanelContent>
-          <Suspense fallback={<GitHubContributionFallback />}>
-            <GitHubContributionGraph contributions={getGitHubContributions()} />
-          </Suspense>
+          <GitHubContributionGraph contributions={contributions} />
         </PanelContent>
       </Panel>
 
@@ -255,15 +257,30 @@ export default function Home() {
             "bg-[radial-gradient(var(--dot-fg)_1px,transparent_0)] bg-[size:10px_10px]",
           ].join(" ")}
         >
-          <div className="flex flex-wrap gap-3">
-            {TECH_STACK.map(({ name }) => (
-              <div
-                key={name}
-                className="size-8 rounded-md bg-background/80 border border-edge"
-                title={name}
-              />
+          <ul className="flex flex-wrap gap-4 select-none">
+            {TECH_STACK.map(({ name, href, iconUrl, theme }) => (
+              <li key={name}>
+                <SimpleTooltip content={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    className="block transition-transform hover:scale-110"
+                  >
+                    <Image
+                      src={iconUrl}
+                      alt={`${name} icon`}
+                      width={32}
+                      height={32}
+                      unoptimized
+                      className={`h-8 w-8 object-contain${theme ? " dark:invert" : ""}`}
+                    />
+                  </a>
+                </SimpleTooltip>
+              </li>
             ))}
-          </div>
+          </ul>
         </PanelContent>
       </Panel>
 

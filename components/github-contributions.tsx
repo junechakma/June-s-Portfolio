@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { LoaderIcon } from "lucide-react";
 import {
   ContributionGraph,
@@ -20,9 +20,9 @@ import {
 export function GitHubContributionGraph({
   contributions,
 }: {
-  contributions: Promise<Activity[]>;
+  contributions: Activity[];
 }) {
-  const data = use(contributions);
+  const data = contributions;
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

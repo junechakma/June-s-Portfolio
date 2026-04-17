@@ -21,7 +21,7 @@ export function SiteHeader() {
               href="https://github.com/junechakma"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              className="flex h-8 w-8 items-center justify-center rounded-md text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
               aria-label="GitHub"
             >
               <svg
