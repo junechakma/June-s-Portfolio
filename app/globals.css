@@ -62,6 +62,24 @@
   @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
 }
 
+@keyframes collapsible-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-collapsible-content-height); opacity: 1; }
+}
+
+@keyframes collapsible-up {
+  from { height: var(--radix-collapsible-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+@utility animate-collapsible-down {
+  animation: collapsible-down 0.25s ease-out;
+}
+
+@utility animate-collapsible-up {
+  animation: collapsible-up 0.25s ease-out;
+}
+
 @utility animate-in {
   animation-name: enter;
   animation-duration: 0.15s;

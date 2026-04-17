@@ -19,6 +19,7 @@ import { getGitHubContributions } from "@/data/github-contributions";
 import { USER } from "@/data/user";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { EXPERIENCES } from "@/data/experiences";
+import { ExperienceItem } from "@/components/experience-item";
 import { PROJECTS } from "@/data/projects";
 import { TECH_STACK } from "@/data/tech-stack";
 
@@ -291,16 +292,9 @@ export default async function Home() {
         <PanelHeader>
           <PanelTitle>Experience</PanelTitle>
         </PanelHeader>
-        <PanelContent className="space-y-6">
-          {EXPERIENCES.map(({ role, org, period }) => (
-            <div key={role} className="flex gap-4">
-              <div className="mt-1 size-2 rounded-full bg-muted-foreground/40 flex-shrink-0" />
-              <div>
-                <p className="font-mono text-sm font-medium text-foreground">{role}</p>
-                <p className="font-mono text-xs text-muted-foreground">{org}</p>
-                <p className="font-mono text-xs text-muted-foreground">{period}</p>
-              </div>
-            </div>
+        <PanelContent className="px-4 py-0">
+          {EXPERIENCES.map((experience) => (
+            <ExperienceItem key={experience.id} experience={experience} />
           ))}
         </PanelContent>
       </Panel>
