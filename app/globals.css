@@ -7,9 +7,11 @@
   --foreground: oklch(0.141 0.005 285.823);
   --muted-foreground: oklch(0.552 0.016 285.938);
   --border: oklch(0.92 0.004 286.32);
-  --edge: color-mix(in oklab, var(--border) 64%, var(--background));
+  --edge: color-mix(in oklab, var(--border) 55%, var(--background));
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
+  --primary: oklch(0.141 0.005 285.823);
+  --primary-foreground: oklch(0.985 0 0);
 }
 
 .dark {
@@ -17,9 +19,11 @@
   --foreground: oklch(0.985 0 0);
   --muted-foreground: oklch(0.705 0.015 286.067);
   --border: oklch(0.274 0.006 286.033);
-  --edge: oklch(0.274 0.006 286.033);
+  --edge: color-mix(in oklab, var(--border) 55%, var(--background));
   --accent: oklch(0.274 0.006 286.033);
   --accent-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.141 0.005 285.823);
 }
 
 @theme inline {
@@ -30,8 +34,22 @@
   --color-edge: var(--edge);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --animate-in: enter 0.15s ease-out;
+  --animate-out: exit 0.15s ease-in;
+
+  @keyframes enter {
+    from { opacity: var(--tw-enter-opacity, 1); transform: translate(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0)) scale(var(--tw-enter-scale, 1)); }
+    to { opacity: 1; transform: translate(0, 0) scale(1); }
+  }
+  @keyframes exit {
+    from { opacity: 1; transform: translate(0, 0) scale(1); }
+    to { opacity: var(--tw-exit-opacity, 1); transform: translate(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0)) scale(var(--tw-exit-scale, 1)); }
+  }
 }
 
 /* Full-viewport horizontal line at the top of an element */
@@ -43,6 +61,29 @@
 @utility screen-line-after {
   @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
 }
+
+@utility animate-in {
+  animation-name: enter;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+@utility animate-out {
+  animation-name: exit;
+  animation-duration: 0.15s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+}
+
+@utility fade-in-0 { --tw-enter-opacity: 0; }
+@utility fade-out-0 { --tw-exit-opacity: 0; }
+@utility zoom-in-95 { --tw-enter-scale: 0.95; }
+@utility zoom-out-95 { --tw-exit-scale: 0.95; }
+@utility slide-in-from-top-2 { --tw-enter-translate-y: -0.5rem; }
+@utility slide-in-from-bottom-2 { --tw-enter-translate-y: 0.5rem; }
+@utility slide-in-from-left-2 { --tw-enter-translate-x: -0.5rem; }
+@utility slide-in-from-right-2 { --tw-enter-translate-x: 0.5rem; }
 
 @layer base {
   body {

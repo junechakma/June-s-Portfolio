@@ -4,12 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type NavItem = {
-  label: string;
-  href: string;
-};
-
-const NAV_ITEMS: NavItem[] = [
+const NAV_ITEMS = [
   { label: "Portfolio", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },

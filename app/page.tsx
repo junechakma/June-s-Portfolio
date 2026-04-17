@@ -1,5 +1,8 @@
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "@/components/panel";
 import { Separator } from "@/components/separator";
+import { ProfileAvatar } from "@/components/profile-avatar";
+import { FlipSentences } from "@/components/flip-sentences";
+import { Zap } from "lucide-react";
 
 export default function Home() {
   return (
@@ -25,7 +28,7 @@ export default function Home() {
       <div className="screen-line-after flex border-x border-edge">
         {/* Avatar column */}
         <div className="shrink-0 border-r border-edge p-3">
-          <div className="size-32 sm:size-40 rounded-full bg-accent ring-1 ring-border ring-offset-2 ring-offset-background" />
+          <ProfileAvatar />
         </div>
 
         {/* Name + title column */}
@@ -34,22 +37,35 @@ export default function Home() {
           <div
             className={[
               "flex grow items-end pb-1 pl-4",
-              "[--diag-fg:color-mix(in_oklab,var(--color-edge)_56%,transparent)]",
-              "bg-[repeating-linear-gradient(315deg,var(--diag-fg)_0,var(--diag-fg)_1px,transparent_0,transparent_50%)]",
+              "[--pattern-fg:color-mix(in_oklab,var(--color-edge)_70%,transparent)] dark:[--pattern-fg:color-mix(in_oklab,var(--color-edge)_35%,transparent)]",
+              "bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)]",
               "bg-[size:10px_10px]",
             ].join(" ")}
           >
-            <span className="font-mono text-xs text-edge/50 select-none hidden sm:block">
-              text-3xl font-semibold
+            <span className="line-clamp-1 font-mono text-xs text-zinc-300 dark:text-zinc-800 select-none hidden sm:block">
+              {"text-3xl "}
+              <span className="inline dark:hidden">text-zinc-950</span>
+              <span className="hidden dark:inline">text-zinc-50</span>
+              {" font-semibold"}
             </span>
           </div>
 
           <div className="border-t border-edge">
-            <h1 className="pl-4 text-3xl font-semibold">June Chakma</h1>
+            <h1 className="flex items-center gap-2 pl-4 text-3xl font-semibold">
+              June Chakma
+              <Zap className="size-6 fill-yellow-400 text-yellow-400" />
+            </h1>
             <div className="h-12 border-t border-edge py-1 pl-4 sm:h-auto">
-              <p className="font-mono text-sm text-muted-foreground">
-                Web Developer · App Developer · Vibe Coder
-              </p>
+              <FlipSentences
+                sentences={[
+                  "Web Developer",
+                  "App Developer",
+                  "Vibe Coder",
+                  "Flutter Developer",
+                  "React & Next.js Dev",
+                  "AI-Powered Builder",
+                ]}
+              />
             </div>
           </div>
         </div>
