@@ -9,6 +9,9 @@ import {
   MailIcon, PhoneIcon, MarsIcon, ArrowUpRightIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
+// import { AsciiRain } from "@/components/ascii-rain";
+// import { ScrambleText } from "@/components/scramble-text";
+import { SnakeGame } from "@/components/snake-game";
 import { USER } from "@/data/user";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { EXPERIENCES } from "@/data/experiences";
@@ -27,6 +30,7 @@ export default function Home() {
       {/* ── Cover Banner ─────────────────────────────────────── */}
       <div
         className={[
+          "relative overflow-hidden",
           "screen-line-before screen-line-after before:-top-px after:-bottom-px",
           "aspect-[2/1] sm:aspect-[3/1] border-x border-edge",
           "flex items-center justify-center select-none",
@@ -35,9 +39,17 @@ export default function Home() {
           "bg-[radial-gradient(var(--dot-fg)_1px,transparent_0)] bg-[size:10px_10px]",
         ].join(" ")}
       >
-        <span className="font-mono text-2xl font-bold tracking-tight text-foreground/20 select-none">
-          june.dev
-        </span>
+        {/* <AsciiRain className="absolute inset-0 w-full h-full pointer-events-none" /> */}
+        {/* <div className="relative z-10 flex flex-col items-center gap-2">
+          <span className="font-mono text-[11px] text-muted-foreground/40 tracking-widest uppercase">
+            ~/june.dev $
+          </span>
+          <ScrambleText
+            text="june.dev"
+            className="font-mono text-3xl font-bold tracking-tight text-foreground/30"
+          />
+        </div> */}
+        <SnakeGame className="absolute inset-0 w-full h-full" />
       </div>
 
       {/* ── Profile Header ───────────────────────────────────── */}
