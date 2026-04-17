@@ -2,7 +2,23 @@ import { Panel, PanelContent, PanelHeader, PanelTitle } from "@/components/panel
 import { Separator } from "@/components/separator";
 import { ProfileAvatar } from "@/components/profile-avatar";
 import { FlipSentences } from "@/components/flip-sentences";
-import { Zap } from "lucide-react";
+import { IntroItem, IntroItemIcon, IntroItemContent, IntroItemLink } from "@/components/overview/intro-item";
+import { LocalTimeItem } from "@/components/overview/local-time-item";
+import {
+  BriefcaseBusinessIcon, LightbulbIcon, MapPinIcon,
+  MailIcon, PhoneIcon, MarsIcon, ArrowUpRightIcon,
+} from "lucide-react";
+import { Icons } from "@/components/icons";
+import { USER } from "@/data/user";
+import { SOCIAL_LINKS } from "@/data/social-links";
+import { EXPERIENCES } from "@/data/experiences";
+import { PROJECTS } from "@/data/projects";
+import { TECH_STACK } from "@/data/tech-stack";
+
+const JOB_ICONS: Record<string, React.ReactNode> = {
+  "Co-founder": <LightbulbIcon />,
+  "Lab In-Charge": <BriefcaseBusinessIcon />,
+};
 
 export default function Home() {
   return (
@@ -37,7 +53,7 @@ export default function Home() {
           <div
             className={[
               "flex grow items-end pb-1 pl-4",
-              "[--pattern-fg:color-mix(in_oklab,var(--color-edge)_70%,transparent)] dark:[--pattern-fg:color-mix(in_oklab,var(--color-edge)_35%,transparent)]",
+              "[--pattern-fg:color-mix(in_oklab,var(--color-edge)_45%,transparent)]",
               "bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)]",
               "bg-[size:10px_10px]",
             ].join(" ")}
@@ -52,20 +68,11 @@ export default function Home() {
 
           <div className="border-t border-edge">
             <h1 className="flex items-center gap-2 pl-4 text-3xl font-semibold">
-              June Chakma
-              <Zap className="size-6 fill-yellow-400 text-yellow-400" />
+              {USER.name}
+              <span className="text-2xl" title="Bangladesh">🇧🇩</span>
             </h1>
             <div className="h-12 border-t border-edge py-1 pl-4 sm:h-auto">
-              <FlipSentences
-                sentences={[
-                  "Web Developer",
-                  "App Developer",
-                  "Vibe Coder",
-                  "Flutter Developer",
-                  "React & Next.js Dev",
-                  "AI-Powered Builder",
-                ]}
-              />
+              <FlipSentences sentences={USER.flipSentences} />
             </div>
           </div>
         </div>
@@ -76,22 +83,60 @@ export default function Home() {
       {/* ── Overview ─────────────────────────────────────────── */}
       <Panel id="overview">
         <PanelContent className="space-y-2.5">
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {[
-              "📍 Dhaka, Bangladesh",
-              "✉️ junechakma50@gmail.com",
-              "💼 Lab In-Charge · UCSI University",
-              "🌐 junechakma.dev",
-              "🎓 MSc Educational Technology",
-              "🕐 GMT+6",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-2 font-mono text-sm text-muted-foreground"
-              >
-                {item}
-              </div>
-            ))}
+
+          {USER.jobs.map((job) => (
+            <IntroItem key={job.title}>
+              <IntroItemIcon>{JOB_ICONS[job.title] ?? <BriefcaseBusinessIcon />}</IntroItemIcon>
+              <IntroItemContent>
+                {job.title} @{" "}
+                <IntroItemLink href={job.website} className="ml-0.5 font-medium">
+                  {job.company}
+                </IntroItemLink>
+              </IntroItemContent>
+            </IntroItem>
+          ))}
+
+          <div className="grid gap-x-12 gap-y-2.5 sm:grid-cols-2">
+
+            {/* Location — left */}
+            <IntroItem>
+              <IntroItemIcon><MapPinIcon /></IntroItemIcon>
+              <IntroItemContent>
+                <IntroItemLink href={USER.locationMapUrl}>
+                  {USER.location}
+                </IntroItemLink>
+              </IntroItemContent>
+            </IntroItem>
+
+            {/* Pronouns — right */}
+            <IntroItem>
+              <IntroItemIcon><MarsIcon /></IntroItemIcon>
+              <IntroItemContent aria-label={`Pronouns: ${USER.pronouns}`}>{USER.pronouns}</IntroItemContent>
+            </IntroItem>
+
+            {/* Email — left */}
+            <IntroItem>
+              <IntroItemIcon><MailIcon /></IntroItemIcon>
+              <IntroItemContent>
+                <IntroItemLink href={`mailto:${USER.email}`}>
+                  {USER.email}
+                </IntroItemLink>
+              </IntroItemContent>
+            </IntroItem>
+
+            {/* Local time — right */}
+            <LocalTimeItem />
+
+            {/* Phone — left */}
+            <IntroItem>
+              <IntroItemIcon><PhoneIcon /></IntroItemIcon>
+              <IntroItemContent>
+                <IntroItemLink href={`tel:${USER.phone}`}>
+                  {USER.phoneDisplay}
+                </IntroItemLink>
+              </IntroItemContent>
+            </IntroItem>
+
           </div>
         </PanelContent>
       </Panel>
@@ -107,23 +152,28 @@ export default function Home() {
             <div />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2">
-            {[
-              { label: "GitHub", sub: "github.com/junechakma" },
-              { label: "LinkedIn", sub: "linkedin.com/in/june-chakma-dev" },
-              { label: "Instagram", sub: "@june_chakma" },
-              { label: "Email", sub: "junechakma50@gmail.com" },
-            ].map(({ label, sub }) => (
-              <div
-                key={label}
-                className="flex items-center gap-3 px-4 py-3 border-b border-edge last:border-b-0 sm:[&:nth-child(odd)]:border-r sm:[&:nth-child(odd)]:border-edge"
-              >
-                <div className="size-8 rounded-md bg-accent flex-shrink-0" />
-                <div>
-                  <p className="font-mono text-sm font-medium text-foreground">{label}</p>
-                  <p className="font-mono text-xs text-muted-foreground">{sub}</p>
-                </div>
-              </div>
-            ))}
+            {SOCIAL_LINKS.map(({ icon, label, sub, href, iconSize }) => {
+              const IconComponent = Icons[icon as keyof typeof Icons];
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link flex cursor-pointer items-center gap-4 p-4 pr-2 transition-colors select-none max-sm:screen-line-before max-sm:screen-line-after odd:sm:screen-line-before odd:sm:screen-line-after"
+                >
+                  <div className="relative flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent">
+                    <IconComponent className={iconSize ?? "size-6"} />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium underline-offset-4 group-hover/link:underline">{label}</p>
+                    <p className="text-sm text-muted-foreground">{sub}</p>
+                  </div>
+                  <ArrowUpRightIcon className="size-4 text-muted-foreground" />
+                </a>
+              );
+            })}
           </div>
         </div>
       </Panel>
@@ -137,11 +187,7 @@ export default function Home() {
         </PanelHeader>
         <PanelContent>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
-            Frontend-focused full stack developer with hands-on experience in
-            AI-driven development. Expertise in building web and mobile
-            applications using JavaScript, React, Next.js, and Flutter.
-            Educational Technology graduate blending technical and pedagogical
-            insight.
+            {USER.about}
           </p>
         </PanelContent>
       </Panel>
@@ -161,14 +207,11 @@ export default function Home() {
           ].join(" ")}
         >
           <div className="flex flex-wrap gap-3">
-            {[
-              "Next.js", "React", "TypeScript", "Flutter", "Dart",
-              "Tailwind CSS", "Firebase", "Framer Motion", "Three.js", "GSAP",
-            ].map((tech) => (
+            {TECH_STACK.map(({ name }) => (
               <div
-                key={tech}
+                key={name}
                 className="size-8 rounded-md bg-background/80 border border-edge"
-                title={tech}
+                title={name}
               />
             ))}
           </div>
@@ -183,12 +226,7 @@ export default function Home() {
           <PanelTitle>Experience</PanelTitle>
         </PanelHeader>
         <PanelContent className="space-y-6">
-          {[
-            { role: "Lab In-Charge & Assistant to Dean", org: "UCSI University Bangladesh", period: "Sep 2025 – Present" },
-            { role: "Lecturer (Contractual)", org: "Daffodil International University", period: "Jul 2025 – Sep 2025" },
-            { role: "Freelance Developer", org: "Fiverr & Upwork", period: "Jan 2022 – Present" },
-            { role: "Jr. Frontend Developer", org: "CompileQ", period: "Aug 2023 – Jun 2024" },
-          ].map(({ role, org, period }) => (
+          {EXPERIENCES.map(({ role, org, period }) => (
             <div key={role} className="flex gap-4">
               <div className="mt-1 size-2 rounded-full bg-muted-foreground/40 flex-shrink-0" />
               <div>
@@ -209,27 +247,27 @@ export default function Home() {
           <PanelTitle>
             Projects
             <sup className="ml-1 font-mono text-sm text-muted-foreground select-none">
-              (8)
+              ({PROJECTS.length})
             </sup>
           </PanelTitle>
         </PanelHeader>
         <PanelContent className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {[
-            { name: "Mitschke Immo", desc: "Real estate platform" },
-            { name: "Qamla Crew", desc: "Business website" },
-            { name: "CompileQ", desc: "Corporate website" },
-            { name: "GTA VI Fan Site", desc: "High-end UI site" },
-            { name: "Fly the Plane", desc: "3D Web Game" },
-            { name: "Limoncello London", desc: "Restaurant website" },
-          ].map(({ name, desc }) => (
-            <div
-              key={name}
-              className="rounded-md border border-edge bg-accent/30 p-3"
-            >
-              <p className="font-mono text-sm font-medium text-foreground">{name}</p>
-              <p className="font-mono text-xs text-muted-foreground">{desc}</p>
-            </div>
-          ))}
+          {PROJECTS.map(({ name, desc, href }) => {
+            const Wrapper = href ? "a" : "div";
+            const props = href
+              ? { href, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+            return (
+              <Wrapper
+                key={name}
+                {...props}
+                className="rounded-md border border-edge bg-accent/30 p-3 block"
+              >
+                <p className="font-mono text-sm font-medium text-foreground">{name}</p>
+                <p className="font-mono text-xs text-muted-foreground">{desc}</p>
+              </Wrapper>
+            );
+          })}
         </PanelContent>
       </Panel>
 
@@ -245,10 +283,10 @@ export default function Home() {
             Open to freelance work, collaborations, and full-time opportunities.
             Reach out at{" "}
             <a
-              href="mailto:junechakma50@gmail.com"
+              href={`mailto:${USER.email}`}
               className="font-medium text-foreground underline underline-offset-4"
             >
-              junechakma50@gmail.com
+              {USER.email}
             </a>
           </p>
         </PanelContent>
