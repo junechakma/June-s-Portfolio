@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "@/components/panel";
 import { Separator } from "@/components/separator";
 import { ProfileAvatar } from "@/components/profile-avatar";
@@ -12,6 +13,8 @@ import { Icons } from "@/components/icons";
 // import { AsciiRain } from "@/components/ascii-rain";
 // import { ScrambleText } from "@/components/scramble-text";
 import { SnakeGame } from "@/components/snake-game";
+import { GitHubContributionGraph, GitHubContributionFallback } from "@/components/github-contributions";
+import { getGitHubContributions } from "@/data/github-contributions";
 import { USER } from "@/data/user";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { EXPERIENCES } from "@/data/experiences";
@@ -198,9 +201,43 @@ export default function Home() {
           <PanelTitle>About</PanelTitle>
         </PanelHeader>
         <PanelContent>
-          <p className="text-sm text-muted-foreground leading-relaxed max-w-prose">
-            {USER.about}
-          </p>
+          <ul className="space-y-2">
+            {USER.about
+              .split("\n")
+              .filter((line) => line.startsWith("- "))
+              .map((line, i) => {
+                const content = line.slice(2);
+                const parts = content.split(/(\*\*[^*]+\*\*)/g);
+                return (
+                  <li key={i} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
+                    <span className="mt-1.5 size-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
+                    <span>
+                      {parts.map((part, j) =>
+                        part.startsWith("**") && part.endsWith("**") ? (
+                          <strong key={j} className="text-foreground font-medium">{part.slice(2, -2)}</strong>
+                        ) : (
+                          part
+                        )
+                      )}
+                    </span>
+                  </li>
+                );
+              })}
+          </ul>
+        </PanelContent>
+      </Panel>
+
+      <Separator />
+
+      {/* ── GitHub Contributions ─────────────────────────────── */}
+      <Panel id="github">
+        <PanelHeader>
+          <PanelTitle>GitHub</PanelTitle>
+        </PanelHeader>
+        <PanelContent>
+          <Suspense fallback={<GitHubContributionFallback />}>
+            <GitHubContributionGraph contributions={getGitHubContributions()} />
+          </Suspense>
         </PanelContent>
       </Panel>
 
