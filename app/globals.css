@@ -34,35 +34,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Full-viewport horizontal line at the top of an element */
 @utility screen-line-before {
-  position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100vw;
-    z-index: -1;
-    height: 1px;
-    width: 200vw;
-    background-color: var(--edge);
-  }
+  @apply relative before:absolute before:top-0 before:-left-[100vw] before:-z-1 before:h-px before:w-[200vw] before:bg-edge;
 }
 
+/* Full-viewport horizontal line at the bottom of an element */
 @utility screen-line-after {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: -100vw;
-    z-index: -1;
-    height: 1px;
-    width: 200vw;
-    background-color: var(--edge);
-  }
+  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:-z-1 after:h-px after:w-[200vw] after:bg-edge;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 }
