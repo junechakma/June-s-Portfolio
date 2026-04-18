@@ -7,7 +7,7 @@ import { IntroItem, IntroItemIcon, IntroItemContent, IntroItemLink } from "@/com
 import { LocalTimeItem } from "@/components/overview/local-time-item";
 import {
   BriefcaseBusinessIcon, LightbulbIcon, MapPinIcon,
-  MailIcon, PhoneIcon, MarsIcon, ArrowUpRightIcon,
+  MailIcon, PhoneIcon, MarsIcon, ArrowUpRightIcon, ArrowRightIcon,
 } from "lucide-react";
 import { Icons } from "@/components/icons";
 import { SimpleTooltip } from "@/components/ui/tooltip";
@@ -26,6 +26,8 @@ import { ExperienceItem } from "@/components/experience-item";
 import { AchievementItem } from "@/components/achievement-item";
 import { PROJECTS } from "@/data/projects";
 import { TECH_STACK } from "@/data/tech-stack";
+import { ProjectCard } from "@/components/project-card";
+import Link from "next/link";
 
 const JOB_ICONS: Record<string, React.ReactNode> = {
   "Co-founder": <LightbulbIcon />,
@@ -357,24 +359,28 @@ export default async function Home() {
             </sup>
           </PanelTitle>
         </PanelHeader>
-        <PanelContent className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {PROJECTS.map(({ name, desc, href }) => {
-            const Wrapper = href ? "a" : "div";
-            const props = href
-              ? { href, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-            return (
-              <Wrapper
-                key={name}
-                {...props}
-                className="rounded-md border border-edge bg-accent/30 p-3 block"
-              >
-                <p className="font-mono text-sm font-medium text-foreground">{name}</p>
-                <p className="font-mono text-xs text-muted-foreground">{desc}</p>
-              </Wrapper>
-            );
-          })}
-        </PanelContent>
+
+        <div className="relative pt-4">
+          <div className="absolute inset-0 -z-10 grid-cols-2 max-sm:hidden sm:grid">
+            <div className="border-r border-edge" />
+            <div />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {PROJECTS.slice(0, 4).map((project, index) => (
+              <ProjectCard key={project.name} project={project} priority={index <= 3} />
+            ))}
+          </div>
+        </div>
+
+        <div className="screen-line-before flex justify-center py-3">
+          <Link
+            href="/projects"
+            className="flex items-center gap-1.5 rounded-full border border-edge bg-accent px-4 py-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            All Projects
+            <ArrowRightIcon className="size-3.5" />
+          </Link>
+        </div>
       </Panel>
 
       <Separator />

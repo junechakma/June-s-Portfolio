@@ -187,15 +187,19 @@ export function SnakeGame({ className }: { className?: string }) {
         ctx.fillText("GAME OVER", W / 2, H / 2 - 12);
         ctx.font = "11px monospace";
         ctx.fillStyle = d ? "rgba(161,161,170,0.3)" : "rgba(82,82,91,0.25)";
-        ctx.fillText(`score: ${score}  ·  press any key to restart`, W / 2, H / 2 + 6);
+        ctx.fillText(`score: ${score}  ·  click here or press enter to restart`, W / 2, H / 2 + 6);
       }
 
       rafId = requestAnimationFrame(draw);
     };
 
     const onKey = (e: KeyboardEvent) => {
-      if (status === "idle" || status === "over") {
+      if (status === "idle") {
         startGame();
+        return;
+      }
+      if (status === "over") {
+        if (e.key === "Enter") startGame();
         return;
       }
       const d = KEY_DIR[e.key];
