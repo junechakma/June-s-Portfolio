@@ -26,75 +26,20 @@ export type Experience = {
 export const EXPERIENCES: Experience[] = [
   {
     id: "ucsi",
-    companyName: "UCSI University Bangladesh",
-    companyLogo: "https://www.bangladesh.ucsiuniversity.edu.my/favicon.ico",
+    companyName: "UCSI University Bangladesh Branch Campus",
+    companyLogo: "/images/ucsi-logo.jpg",
     isCurrentEmployer: true,
     positions: [
       {
         id: "ucsi-lab",
-        title: "Lab In-Charge & Assistant to Dean",
+        title: "Lab In-Charge & Assistant to the Dean",
         employmentPeriod: { start: "09.2025" },
-        employmentType: "Full-time",
+        employmentType: "Part-time",
         icon: "business",
-        description: `- Managing the university computer lab, overseeing hardware/software maintenance and student support.
-- Assisting the Dean with administrative and academic coordination tasks.
-- Supporting curriculum delivery and facilitating hands-on lab sessions for students.`,
-        skills: ["Lab Management", "Academic Administration", "Student Support", "IT Infrastructure"],
+        description: `- Oversee daily computer laboratory operations including equipment maintenance, supporting faculties, and safety protocol enforcement during lab sessions.
+- Provide comprehensive administrative support to the Dean (FCSDI) by preparing reports, coordinating meetings, managing correspondence, and maintaining organized schedules and documentation.`,
+        skills: ["Lab Management", "Academic Administration", "Student Support", "IT Infrastructure", "Documentation"],
         isExpanded: true,
-      },
-    ],
-  },
-  {
-    id: "bjet",
-    companyName: "B-JET Program",
-    companyLogo: "https://ui-avatars.com/api/?name=B-JET&background=E63946&color=fff&size=200",
-    isCurrentEmployer: true,
-    positions: [
-      {
-        id: "bjet-web-dev",
-        title: "Web Developer (Contractual)",
-        employmentPeriod: { start: "01.2025" },
-        employmentType: "Contract",
-        icon: "code",
-        description: `- Working contractually as a Web Developer for the Bangladesh-Japan ICT Engineers' Training Program.
-- Building and maintaining web platforms that support the program's operations and participant management.
-- Grooming Bangladeshi ICT engineers for the Japanese IT sector through technical tooling.`,
-        skills: ["Next.js", "React", "TypeScript", "Web Development", "Contract Work"],
-      },
-    ],
-  },
-  {
-    id: "daffodil",
-    companyName: "Daffodil International University",
-    companyLogo: "https://daffodilvarsity.edu.bd/favicon.ico",
-    positions: [
-      {
-        id: "diu-lecturer",
-        title: "Lecturer (Contractual)",
-        employmentPeriod: { start: "07.2025", end: "09.2025" },
-        employmentType: "Contract",
-        icon: "education",
-        description: `- Delivered lectures on web development and programming fundamentals.
-- Mentored students on practical frontend development skills.`,
-        skills: ["Teaching", "Web Development", "React", "JavaScript", "Mentoring"],
-      },
-    ],
-  },
-  {
-    id: "compileq",
-    companyName: "CompileQ",
-    companyLogo: "https://ui-avatars.com/api/?name=CompileQ&background=6366F1&color=fff&size=200",
-    positions: [
-      {
-        id: "compileq-frontend",
-        title: "Jr. Frontend Developer",
-        employmentPeriod: { start: "08.2023", end: "06.2024" },
-        employmentType: "Full-time",
-        icon: "code",
-        description: `- Developed responsive user interfaces using React.js and Tailwind CSS.
-- Collaborated with senior developers on production-level web applications.
-- Participated in code reviews and agile sprint planning.`,
-        skills: ["React.js", "Tailwind CSS", "JavaScript", "TypeScript", "Git", "Agile"],
       },
     ],
   },
@@ -106,15 +51,51 @@ export const EXPERIENCES: Experience[] = [
       {
         id: "freelance-dev",
         title: "Full-stack & Mobile Developer",
-        employmentPeriod: { start: "01.2022" },
+        employmentPeriod: { start: "01.2023" },
         employmentType: "Freelance",
         icon: "code",
-        description: `- Delivered projects for **25+ international clients** on Fiverr and Upwork.
-- Built web and mobile applications using React, Next.js, Flutter, and Firebase.
-- Creator of **ChangmaBhach** — an ML-powered Flutter app for Chakma language learning with TensorFlow Lite.
-- Co-founded **Wydiz**, a web studio delivering premium websites in a 7–10 day sprint.`,
-        skills: ["Next.js", "React", "Flutter", "Firebase", "Dart", "Fiverr", "Upwork", "Wydiz"],
+        description: `- Delivered projects for **25+ international clients** on Fiverr and Upwork with consistent client satisfaction.
+- Built cross-platform mobile apps using **Flutter** and **Firebase**, and diverse websites — custom and WordPress-based.
+- Co-founded **Wydiz**, a web studio delivering premium websites in a 7–10 day sprint.
+- Creator of **ChangmaBhach** — an ML-powered Flutter app for Chakma language learning with TensorFlow Lite.`,
+        skills: ["Flutter", "React", "Next.js", "WordPress", "Firebase", "Blender", "Fiverr", "Upwork"],
         isExpanded: true,
+      },
+    ],
+  },
+  {
+    id: "daffodil",
+    companyName: "Daffodil International University",
+    companyLogo: "https://daffodilvarsity.edu.bd/favicon.ico",
+    positions: [
+      {
+        id: "diu-lecturer",
+        title: "Lecturer (Contractual)",
+        employmentPeriod: { start: "07.2025", end: "08.2025" },
+        employmentType: "Contract",
+        icon: "education",
+        description: `- Taught Object-Oriented Programming (OOP) theory and conducted lab sessions.
+- Technology used: Java, Python.`,
+        skills: ["Java", "Python", "OOP", "Teaching", "Lab Instruction"],
+      },
+    ],
+  },
+  {
+    id: "compileq",
+    companyName: "CompileQ",
+    companyLogo: "/images/compileq-logo.jpg",
+    positions: [
+      {
+        id: "compileq-frontend",
+        title: "Jr. Frontend Developer",
+        employmentPeriod: { start: "08.2023", end: "06.2024" },
+        employmentType: "Full-time",
+        icon: "code",
+        description: `- Developed and maintained responsive websites using **React.js**, **Next.js**, Framer Motion, and Tailwind CSS, improving user engagement and ensuring cross-device compatibility.
+- Collaborated with design and backend teams, integrated third-party APIs with authentication.
+- Participated in agile sprints using Slack, Microsoft Teams, and GitHub.
+- Remote position at a **UK-based company**.`,
+        skills: ["React.js", "Next.js", "Tailwind CSS", "Motion", "GSAP", "Firebase", "Git", "Agile"],
       },
     ],
   },

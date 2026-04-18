@@ -6,43 +6,53 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
-    name: "Mitschke Immo",
-    desc: "Real estate platform",
-    href: "https://mitschke-immo.de/",
+    name: "Receipt Scanner",
+    desc: "Privacy-first offline receipt & expense tracker",
+    href: "https://june-chakma.vercel.app/apps/receipt-scanner-free.html",
   },
   {
     name: "Qamla Crew",
-    desc: "Business website",
-    href: "https://qamlacrew.com/",
+    desc: "Worker management app — iOS & Android",
+    href: "https://apps.apple.com/us/app/qamlacrew/id6755341717",
+  },
+  {
+    name: "Class Response System",
+    desc: "Real-time student engagement platform",
+    href: "https://classresponse.com/",
+  },
+  {
+    name: "The Social Meet",
+    desc: "Cross-platform social media app",
+    href: "https://www.thesocialmeet.com/",
+  },
+  {
+    name: "ChangmaBhach",
+    desc: "ML-powered Chakma language learning app",
+    href: "https://june-chakma.vercel.app/apps/changmabhach.html",
+  },
+  {
+    name: "Buddhimotta",
+    desc: "Multiple intelligence assessment app",
+    href: "https://june-chakma.vercel.app/apps/changmabhach.html",
+  },
+  {
+    name: "Mitschke Immo",
+    desc: "Real estate website — Next.js & Firebase",
+    href: "https://mitschke-immo.de/",
   },
   {
     name: "CompileQ",
-    desc: "Corporate website",
+    desc: "Corporate website — UK-based company",
     href: "https://compileq.co.uk/",
   },
   {
-    name: "GTA VI Fan Site",
-    desc: "High-end UI site",
-    href: "https://gtavi-tau.vercel.app/",
-  },
-  {
     name: "Fly the Plane",
-    desc: "Interactive 3D Web Game",
+    desc: "Interactive 3D web game",
     href: "http://fly-the-plane.vercel.app/",
   },
   {
     name: "Limoncello London",
     desc: "Restaurant website",
     href: "https://limoncellolondon.co.uk/",
-  },
-  {
-    name: "Class Response",
-    desc: "Educational platform",
-    href: "https://classresponse.com/",
-  },
-  {
-    name: "Little Italy",
-    desc: "Business site",
-    href: "https://littleitalyuk.com/",
   },
 ];

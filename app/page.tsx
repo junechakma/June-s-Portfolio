@@ -20,7 +20,10 @@ import { USER } from "@/data/user";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { EXPERIENCES } from "@/data/experiences";
 import { EDUCATION } from "@/data/education";
+import { TRAINING } from "@/data/training";
+import { ACHIEVEMENTS } from "@/data/achievements";
 import { ExperienceItem } from "@/components/experience-item";
+import { AchievementItem } from "@/components/achievement-item";
 import { PROJECTS } from "@/data/projects";
 import { TECH_STACK } from "@/data/tech-stack";
 
@@ -310,6 +313,34 @@ export default async function Home() {
         <PanelContent className="px-4 py-0">
           {EDUCATION.map((entry) => (
             <ExperienceItem key={entry.id} experience={entry} />
+          ))}
+        </PanelContent>
+      </Panel>
+
+      <Separator />
+
+      {/* ── Training ─────────────────────────────────────────── */}
+      <Panel id="training">
+        <PanelHeader>
+          <PanelTitle>Training</PanelTitle>
+        </PanelHeader>
+        <PanelContent className="px-4 py-0">
+          {TRAINING.map((entry) => (
+            <ExperienceItem key={entry.id} experience={entry} />
+          ))}
+        </PanelContent>
+      </Panel>
+
+      <Separator />
+
+      {/* ── Achievements ─────────────────────────────────────── */}
+      <Panel id="achievements">
+        <PanelHeader>
+          <PanelTitle>Achievements</PanelTitle>
+        </PanelHeader>
+        <PanelContent className="p-0">
+          {ACHIEVEMENTS.map((achievement) => (
+            <AchievementItem key={achievement.id} achievement={achievement} />
           ))}
         </PanelContent>
       </Panel>

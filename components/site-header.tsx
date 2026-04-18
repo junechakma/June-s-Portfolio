@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { Nav } from "./nav";
 import { SearchButton } from "./search-button";
 import { ToggleTheme } from "./toggle-theme";
@@ -9,7 +11,16 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full overflow-x-hidden bg-background px-2 pt-2">
       <div className="screen-line-before screen-line-after mx-auto flex h-12 max-w-3xl items-center justify-between gap-4 border-x border-edge px-4">
-        <div className="flex-1" />
+        <Link href="/" className="flex-1" aria-label="Home">
+          <Image
+            src="/images/logo-balck.png"
+            alt="June Chakma"
+            width={138}
+            height={81}
+            className="h-5 w-auto dark:invert"
+            priority
+          />
+        </Link>
 
         <Nav />
 
