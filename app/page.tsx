@@ -293,6 +293,42 @@ export default async function Home() {
 
       <Separator />
 
+      {/* ── Projects ─────────────────────────────────────────── */}
+      <Panel id="projects">
+        <PanelHeader>
+          <PanelTitle>
+            Projects
+            <sup className="ml-1 font-mono text-sm text-muted-foreground select-none">
+              ({PROJECTS.length})
+            </sup>
+          </PanelTitle>
+        </PanelHeader>
+
+        <div className="relative pt-4">
+          <div className="absolute inset-0 -z-10 grid-cols-2 max-sm:hidden sm:grid">
+            <div className="border-r border-edge" />
+            <div />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2">
+            {PROJECTS.slice(0, 4).map((project, index) => (
+              <ProjectCard key={project.name} project={project} priority={index <= 3} />
+            ))}
+          </div>
+        </div>
+
+        <div className="screen-line-before flex justify-center py-3">
+          <Link
+            href="/projects"
+            className="flex items-center gap-1.5 rounded-full border border-edge bg-accent px-4 py-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            All Projects
+            <ArrowRightIcon className="size-3.5" />
+          </Link>
+        </div>
+      </Panel>
+
+      <Separator />
+
       {/* ── Experience ───────────────────────────────────────── */}
       <Panel id="experience">
         <PanelHeader>
@@ -345,42 +381,6 @@ export default async function Home() {
             <AchievementItem key={achievement.id} achievement={achievement} />
           ))}
         </PanelContent>
-      </Panel>
-
-      <Separator />
-
-      {/* ── Projects ─────────────────────────────────────────── */}
-      <Panel id="projects">
-        <PanelHeader>
-          <PanelTitle>
-            Projects
-            <sup className="ml-1 font-mono text-sm text-muted-foreground select-none">
-              ({PROJECTS.length})
-            </sup>
-          </PanelTitle>
-        </PanelHeader>
-
-        <div className="relative pt-4">
-          <div className="absolute inset-0 -z-10 grid-cols-2 max-sm:hidden sm:grid">
-            <div className="border-r border-edge" />
-            <div />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            {PROJECTS.slice(0, 4).map((project, index) => (
-              <ProjectCard key={project.name} project={project} priority={index <= 3} />
-            ))}
-          </div>
-        </div>
-
-        <div className="screen-line-before flex justify-center py-3">
-          <Link
-            href="/projects"
-            className="flex items-center gap-1.5 rounded-full border border-edge bg-accent px-4 py-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            All Projects
-            <ArrowRightIcon className="size-3.5" />
-          </Link>
-        </div>
       </Panel>
 
       <Separator />

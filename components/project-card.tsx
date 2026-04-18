@@ -26,8 +26,8 @@ export function ProjectCard({
   return (
     <div className="group/card flex flex-col gap-2 p-2 max-sm:screen-line-before max-sm:screen-line-after sm:nth-[2n+1]:screen-line-before sm:nth-[2n+1]:screen-line-after">
 
-      {/* Carousel */}
-      {project.images && project.images.length > 1 ? (
+      {/* Carousel — always links to detail page; carousel buttons stopPropagation */}
+      <Link href={`/projects/${project.slug}`} className="block">
         <ProjectImageCarousel
           images={project.images}
           name={project.name}
@@ -35,17 +35,7 @@ export function ProjectCard({
           priority={priority}
           variant="card"
         />
-      ) : (
-        <Link href={`/projects/${project.slug}`} className="block">
-          <ProjectImageCarousel
-            images={project.images}
-            name={project.name}
-            href={project.href}
-            priority={priority}
-            variant="card"
-          />
-        </Link>
-      )}
+      </Link>
 
       {/* Title + date row */}
       <div

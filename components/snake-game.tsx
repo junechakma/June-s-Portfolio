@@ -34,14 +34,14 @@ function makeAudio(src: string, volume = 1) {
 function playOnce(audio: HTMLAudioElement | null) {
   if (!audio) return;
   audio.currentTime = 0;
-  audio.play().catch(() => {});
+  audio.play().catch(() => { });
 }
 
 function playClone(audio: HTMLAudioElement | null) {
   if (!audio) return;
   const clone = audio.cloneNode() as HTMLAudioElement;
   clone.volume = audio.volume;
-  clone.play().catch(() => {});
+  clone.play().catch(() => { });
 }
 
 export function SnakeGame({ className }: { className?: string }) {
@@ -59,7 +59,7 @@ export function SnakeGame({ className }: { className?: string }) {
     const ctx = canvas.getContext("2d")!;
 
     const sfxMove = makeAudio("/music/move.mp3", 0.4);
-    const sfxEat  = makeAudio("/music/food.mp3", 0.6);
+    const sfxEat = makeAudio("/music/food.mp3", 0.6);
     const sfxOver = makeAudio("/music/gameover.mp3", 0.7);
 
     let cols = 0, rows = 0;
@@ -151,7 +151,7 @@ export function SnakeGame({ className }: { className?: string }) {
         ctx.fillText("SNAKE", W / 2, H / 2 - 18);
         ctx.font = "11px monospace";
         ctx.fillStyle = d ? "rgba(161,161,170,0.3)" : "rgba(82,82,91,0.25)";
-        ctx.fillText("press any key or tap to start", W / 2, H / 2);
+        ctx.fillText("tap or press enter key to start", W / 2, H / 2);
         ctx.fillText("↑ ↓ ← →  ·  W A S D  ·  swipe / click to aim", W / 2, H / 2 + 16);
       }
 
@@ -187,7 +187,7 @@ export function SnakeGame({ className }: { className?: string }) {
         ctx.fillText("GAME OVER", W / 2, H / 2 - 12);
         ctx.font = "11px monospace";
         ctx.fillStyle = d ? "rgba(161,161,170,0.3)" : "rgba(82,82,91,0.25)";
-        ctx.fillText(`score: ${score}  ·  click here or press enter to restart`, W / 2, H / 2 + 6);
+        ctx.fillText(`score: ${score}  ·  click here or press enter key to restart`, W / 2, H / 2 + 6);
       }
 
       rafId = requestAnimationFrame(draw);
@@ -195,7 +195,7 @@ export function SnakeGame({ className }: { className?: string }) {
 
     const onKey = (e: KeyboardEvent) => {
       if (status === "idle") {
-        startGame();
+        if (e.key === "Enter") startGame();
         return;
       }
       if (status === "over") {

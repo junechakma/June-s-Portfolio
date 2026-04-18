@@ -32,6 +32,7 @@ export const PROJECTS: Project[] = [
     href: "https://apps.apple.com/us/app/qamlacrew/id6755341717",
     date: "2024-09-01",
     featured: true,
+    images: ["/project/qamla-crew.png"],
     tags: ["Flutter", "Dart", "Firebase", "Supabase"],
     content: `- Cross-platform mobile app for managing field workers and crew schedules.
 - Published on Apple App Store and Google Play Store.
@@ -44,6 +45,7 @@ export const PROJECTS: Project[] = [
     desc: "Real-time student engagement platform",
     href: "https://classresponse.com/",
     date: "2024-03-01",
+    images: ["/project/class-response.png"],
     tags: ["Next.js", "React", "TypeScript", "Firebase"],
     content: `- Web-based platform enabling real-time student-teacher interaction during lectures.
 - Features live polls, quizzes, Q&A sessions, and attendance tracking.
@@ -56,6 +58,14 @@ export const PROJECTS: Project[] = [
     desc: "Cross-platform social media app",
     href: "https://www.thesocialmeet.com/",
     date: "2023-11-01",
+    images: [
+      "/project/social-meet.jpg",
+      "/project/app-images/social-meet1.jpg",
+      "/project/app-images/social-meet2.jpg",
+      "/project/app-images/social-meet3.jpg",
+      "/project/app-images/social-meet4.jpg",
+      "/project/app-images/social-meet5.jpg",
+    ],
     tags: ["Flutter", "Dart", "Firebase"],
     content: `- Full-featured social networking app for iOS and Android.
 - Includes posts, stories, direct messaging, and user discovery.
@@ -68,6 +78,14 @@ export const PROJECTS: Project[] = [
     desc: "ML-powered Chakma language learning app",
     href: "https://june-chakma.vercel.app/apps/changmabhach.html",
     date: "2023-08-01",
+    images: [
+      "/project/changmabhach.png",
+      "/project/app-images/changmabhach1.png",
+      "/project/app-images/changmabhach2.png",
+      "/project/app-images/changmabhach3.png",
+      "/project/app-images/changmabhach4.png",
+      "/project/app-images/changmabhach5.png",
+    ],
     tags: ["Flutter", "Python", "TensorFlow", "ML Kit"],
     content: `- Mobile app for learning and preserving the Chakma language — an endangered script.
 - Uses machine learning to recognize handwritten Chakma characters.
@@ -80,6 +98,14 @@ export const PROJECTS: Project[] = [
     desc: "Multiple intelligence assessment app",
     href: "https://june-chakma.vercel.app/apps/changmabhach.html",
     date: "2023-05-01",
+    images: [
+      "/project/buddhimotta.png",
+      "/project/app-images/buddhimotta2.png",
+      "/project/app-images/buddhimotta3.png",
+      "/project/app-images/buddhimotta4.png",
+      "/project/app-images/buddhimotta5.png",
+      "/project/app-images/buddhimotta6.png",
+    ],
     tags: ["Flutter", "Dart", "Firebase"],
     content: `- Mobile application based on Howard Gardner's Theory of Multiple Intelligences.
 - Assesses users across 8 intelligence types through interactive questions.
@@ -92,6 +118,7 @@ export const PROJECTS: Project[] = [
     desc: "Real estate website — Next.js & Firebase",
     href: "https://mitschke-immo.de/",
     date: "2024-01-01",
+    images: ["/project/immo.png"],
     tags: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
     content: `- Professional real estate website for a German property agency.
 - Features property listings, image galleries, and contact forms.
@@ -104,6 +131,7 @@ export const PROJECTS: Project[] = [
     desc: "Corporate website — UK-based company",
     href: "https://compileq.co.uk/",
     date: "2024-04-01",
+    images: ["/project/compileq.png"],
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
     content: `- Corporate marketing website for CompileQ, a UK-based software company.
 - Designed with a modern, professional aesthetic using Framer Motion animations.
@@ -116,6 +144,7 @@ export const PROJECTS: Project[] = [
     desc: "Interactive 3D web game",
     href: "http://fly-the-plane.vercel.app/",
     date: "2023-07-01",
+    images: ["/project/fly-the-plane.png"],
     tags: ["Three.js", "JavaScript", "WebGL"],
     content: `- Browser-based 3D flying game built with Three.js and WebGL.
 - Procedurally generated terrain with real-time physics simulation.
@@ -128,6 +157,7 @@ export const PROJECTS: Project[] = [
     desc: "Restaurant website",
     href: "https://limoncellolondon.co.uk/",
     date: "2023-12-01",
+    images: ["/project/lemoncello.png"],
     tags: ["Next.js", "Tailwind CSS"],
     content: `- Elegant restaurant website for Limoncello, a London-based Italian dining venue.
 - Features menu showcasing, reservation links, and location information.

@@ -27,23 +27,41 @@ type Props = {
   variant?: "card" | "detail";
 };
 
-export function ProjectImageCarousel({
-  images,
-  name,
-  href,
-  priority,
-  variant = "card",
-}: Props) {
-  const [index, setIndex] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+export function ProjectImageCarousel({ images, name, href, priority, variant = "card" }: Props) {
   const gradient = PLACEHOLDER_GRADIENTS[hashIndex(name)];
   const hasImages = images && images.length > 0;
   const multi = hasImages && images.length > 1;
   const isDetail = variant === "detail";
 
+  // Slides array: [clone_of_last, ...originals, clone_of_first]
+  // Real slides sit at indices 1..n, so we start at index 1
+  const slides = multi ? [images[images.length - 1], ...images, images[0]] : images ?? [];
+  const [pos, setPos] = useState(multi ? 1 : 0);
+  const [animated, setAnimated] = useState(true);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // After a transition ends, silently snap from clone to real slide
+  const onTransitionEnd = useCallback(() => {
+    if (!multi) return;
+    const last = slides.length - 1;
+    if (pos === 0) {
+      setAnimated(false);
+      setPos(last - 1);
+    } else if (pos === last) {
+      setAnimated(false);
+      setPos(1);
+    }
+  }, [multi, pos, slides.length]);
+
+  // Re-enable animation after a silent snap (needs one frame gap)
+  const onTransitionStart = useCallback(() => {
+    if (!animated) setAnimated(true);
+  }, [animated]);
+
   const advance = useCallback(() => {
-    setIndex((i) => (i + 1) % images!.length);
-  }, [images]);
+    setAnimated(true);
+    setPos((p) => p + 1);
+  }, []);
 
   const startAutoPlay = useCallback(() => {
     if (!multi) return;
@@ -60,14 +78,19 @@ export function ProjectImageCarousel({
   const prev = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIndex((i) => (i - 1 + images!.length) % images!.length);
+    setAnimated(true);
+    setPos((p) => p - 1);
   };
 
   const next = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIndex((i) => (i + 1) % images!.length);
+    setAnimated(true);
+    setPos((p) => p + 1);
   };
+
+  // Real index (0-based) for dot indicators
+  const realIndex = multi ? (pos - 1 + images.length) % images.length : pos;
 
   return (
     <div
@@ -75,21 +98,22 @@ export function ProjectImageCarousel({
       onMouseEnter={isDetail ? undefined : startAutoPlay}
       onMouseLeave={isDetail ? undefined : stopAutoPlay}
     >
-      {/* Slides */}
       {hasImages ? (
         <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${index * 100}%)` }}
+          className={`flex ${animated ? "transition-transform duration-500 ease-in-out" : ""}`}
+          style={{ transform: `translateX(-${pos * 100}%)` }}
+          onTransitionEnd={onTransitionEnd}
+          onTransitionStart={onTransitionStart}
         >
-          {images.map((src, i) => (
+          {slides.map((src, i) => (
             <div key={i} className="relative w-full shrink-0">
               <Image
                 src={src}
-                alt={`${name} screenshot ${i + 1}`}
+                alt={`${name} screenshot ${i}`}
                 width={1200}
                 height={630}
                 quality={100}
-                priority={priority && i === 0}
+                priority={priority && i === 1}
                 unoptimized
                 className={`w-full object-cover ${isDetail ? "aspect-[16/9]" : "aspect-[1200/630]"}`}
               />
@@ -111,7 +135,7 @@ export function ProjectImageCarousel({
         <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
       )}
 
-      {/* Prev / Next buttons — detail only */}
+      {/* Prev / Next — detail only */}
       {multi && isDetail && (
         <>
           <button
@@ -131,7 +155,7 @@ export function ProjectImageCarousel({
         </>
       )}
 
-      {/* Dot indicators */}
+      {/* Dots */}
       {multi && (
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
           {images.map((_, i) => (
@@ -140,11 +164,12 @@ export function ProjectImageCarousel({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                setIndex(i);
+                setAnimated(true);
+                setPos(i + 1);
               }}
               aria-label={`Go to image ${i + 1}`}
               className={`rounded-full transition-all duration-200 ${
-                i === index ? "w-4 h-1.5 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                i === realIndex ? "w-4 h-1.5 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
               }`}
             />
           ))}
