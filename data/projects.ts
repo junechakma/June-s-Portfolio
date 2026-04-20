@@ -100,22 +100,44 @@ Full Stack Engineer — designed and developed the entire system end-to-end, fro
   {
     slug: "the-social-meet",
     name: "The Social Meet",
-    desc: "Cross-platform social media app",
+    desc: "A personalized social messaging app",
     href: "https://www.thesocialmeet.com/",
     date: "2023-11-01",
     images: [
-      "/project/social-meet.jpg",
-      "/project/app-images/social-meet1.jpg",
-      "/project/app-images/social-meet2.jpg",
-      "/project/app-images/social-meet3.jpg",
-      "/project/app-images/social-meet4.jpg",
-      "/project/app-images/social-meet5.jpg",
+      "/project/social-meet/social-meet1.jpg",
+      "/project/social-meet/social-meet2.jpg",
+      "/project/social-meet/social-meet3.jpg",
+      "/project/social-meet/social-meet4.jpg",
+      "/project/social-meet/social-meet5.jpg",
+      "/project/social-meet/social-meet6.jpg",
+      "/project/social-meet/social-meet7.jpg",
+      "/project/social-meet/social-meet8.jpg",
+      "/project/social-meet/social-meet9.jpg",
+      "/project/social-meet/social-meet10.jpg",
+      "/project/social-meet/social-meet11.jpg",
     ],
-    tags: ["Flutter", "Dart", "Firebase"],
-    content: `- Full-featured social networking app for iOS and Android.
-- Includes posts, stories, direct messaging, and user discovery.
-- Designed with a focus on clean UI and smooth animations.
-- Backend powered by Firebase with real-time updates.`,
+    tags: ["Flutter", "Firebase", "Claude"],
+    content: `The Social Meet is an innovative social messaging platform that revolutionizes how people connect online. Unlike traditional messaging apps, it uses personality assessments to create meaningful connections between users with compatible personalities.
+
+## My Role
+
+Full-Stack Engineer — built the entire mobile app and backend infrastructure across iOS and Android.
+
+## Features
+
+- Smart group assignment based on personality compatibility.
+- Real-time messaging with Firebase Stream.
+- Intuitive and modern user interface.
+- Admin dashboard for group management and analytics.
+- Secure authentication and data storage.
+- Cross-platform support (iOS & Android).
+- User profile customization.
+
+## Built With
+
+- **Flutter** — cross-platform mobile UI
+- **Firebase** — real-time backend and authentication
+- **Claude** — AI-assisted development`,
   },
   {
     slug: "changmabhach",
@@ -124,18 +146,39 @@ Full Stack Engineer — designed and developed the entire system end-to-end, fro
     href: "https://june-chakma.vercel.app/apps/changmabhach.html",
     date: "2023-08-01",
     images: [
-      "/project/changmabhach.png",
-      "/project/app-images/changmabhach1.png",
-      "/project/app-images/changmabhach2.png",
-      "/project/app-images/changmabhach3.png",
-      "/project/app-images/changmabhach4.png",
-      "/project/app-images/changmabhach5.png",
+      "/project/changmabhach/changmabhach1.png",
+      "/project/changmabhach/changmabhach2.png",
+      "/project/changmabhach/changmabhach3.png",
+      "/project/changmabhach/changmabhach4.png",
+      "/project/changmabhach/changmabhach5.png",
+      "/project/changmabhach/changmabhach6.png",
+      "/project/changmabhach/changmabhach7.png",
+      "/project/changmabhach/changmabhach8.png",
+      "/project/changmabhach/changmabhach9.png",
+      "/project/changmabhach/changmabhach10.png",
     ],
-    tags: ["Flutter", "Python", "TensorFlow", "ML Kit"],
-    content: `- Mobile app for learning and preserving the Chakma language — an endangered script.
-- Uses machine learning to recognize handwritten Chakma characters.
-- Includes interactive lessons, quizzes, and writing practice modules.
-- Published as part of academic research into indigenous language preservation.`,
+    tags: ["Flutter", "TensorFlow Lite", "CNN", "Machine Learning"],
+    content: `ChangmaBhach is an ML-powered mobile application designed to help preserve and revive the Chakma language — an endangered script — by making it interactive and accessible to learners of all levels.
+
+## My Role
+
+Full-Stack Engineer — built the mobile app, trained the ML model, and integrated on-device inference.
+
+## Features
+
+- Interactive handwriting practice with real-time recognition and feedback.
+- Structured lessons for learning Chakma vowels, consonants, and diacritics.
+- Comprehensive dictionary with Chakma-Bangla translations.
+- Flashcards and alphabet table for supplemental learning.
+- Offline functionality for learning without internet connection.
+- Progress tracking and performance feedback.
+
+## Built With
+
+- **Flutter** — cross-platform mobile UI
+- **TensorFlow Lite** — on-device ML inference
+- **Convolutional Neural Network** — handwriting recognition model
+- **Machine Learning Model** — trained on custom Chakma script dataset`,
   },
   {
     slug: "buddhimotta",
@@ -160,15 +203,70 @@ Full Stack Engineer — designed and developed the entire system end-to-end, fro
   {
     slug: "mitschke-immo",
     name: "Mitschke Immo",
-    desc: "Real estate website — Next.js & Firebase",
+    desc: "Real estate website design & development",
     href: "https://mitschke-immo.de/",
     date: "2024-01-01",
-    images: ["/project/immo.png"],
-    tags: ["Next.js", "TypeScript", "Firebase", "Tailwind CSS"],
-    content: `- Professional real estate website for a German property agency.
-- Features property listings, image galleries, and contact forms.
-- Built with Next.js for fast page loads and SEO optimization.
-- Firebase backend for dynamic property management.`,
+    images: [
+      "/project/martin-mitschke/martin-mitschke.png",
+      "/project/martin-mitschke/martin-mitschke2.png",
+      "/project/martin-mitschke/martin-mitschke3.png",
+      "/project/martin-mitschke/martin-mitschke4.png",
+    ],
+    tags: ["Next.js", "Firebase", "Cloudinary", "Claude"],
+    content: `Developed a modern and user-friendly real estate website for Martin Mitschke Immobilien, focused on property buying, selling, and rental services in Germany.
+
+## My Role
+
+Full-Stack Engineer — designed and developed the full website from UI to backend integration.
+
+## Features
+
+- Fully responsive design optimized for performance and trust-building.
+- Property listings with image galleries and contact forms.
+- Blog section for real estate insights, market trends, and investment guidance.
+- Testimonials section and clear service workflows.
+- SEO optimization for improved organic reach.
+
+## Built With
+
+- **Next.js** — full-stack web framework
+- **Firebase** — backend and data storage
+- **Cloudinary** — image management and optimization
+- **Claude** — AI-assisted design and development`,
+  },
+  {
+    slug: "wexford",
+    name: "Wexford",
+    desc: "Education consultancy website for UK study abroad",
+    href: "https://wexford.com/",
+    date: "2024-05-01",
+    images: [
+      "/project/wexford/wexford.png",
+      "/project/wexford/wexford2.png",
+      "/project/wexford/wexford3.png",
+      "/project/wexford/wexford4.png",
+      "/project/wexford/wexford5.png",
+    ],
+    tags: ["Next.js", "Web Hosting", "Claude"],
+    content: `Developed a professional and conversion-focused website for an education consultancy that helps students pursue higher education in the UK.
+
+## My Role
+
+Frontend Engineer — built the full website UI with a focus on lead generation and student journey clarity.
+
+## Features
+
+- Service pages covering university partnerships, eligibility guidance, and end-to-end support.
+- Lead generation forms for initial inquiry and course selection.
+- Clear pathways for application assistance and enrollment support.
+- Clean UI/UX with responsive design for international student audiences.
+- Structured content to guide users from inquiry to application.
+
+## Built With
+
+- **Next.js** — web framework
+- **Web Hosting** — deployment and domain setup
+- **Claude** — AI-assisted development`,
   },
   {
     slug: "compileq",
