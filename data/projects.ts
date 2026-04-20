@@ -3,6 +3,9 @@ export type Project = {
   name: string;
   desc: string;
   href?: string;
+  appStore?: string;
+  playStore?: string;
+  comingSoon?: boolean;
   github?: string;
   images?: string[];
   date?: string;
@@ -16,20 +19,42 @@ export const PROJECTS: Project[] = [
     slug: "receipt-scanner",
     name: "Receipt Scanner",
     desc: "Privacy-first offline receipt & expense tracker",
-    href: "https://june-chakma.vercel.app/apps/receipt-scanner-free.html",
+    comingSoon: true,
     date: "2024-06-01",
     featured: true,
-    tags: ["Flutter", "Dart", "ML Kit", "Firebase"],
-    content: `- Built a fully offline-first mobile app for scanning and categorizing receipts using ML Kit OCR.
-- Implemented privacy-first architecture — no data leaves the device.
-- Features expense tracking, category grouping, and monthly summaries.
-- Available on both Android and iOS as a free download.`,
+    images: [
+      "/project/receipt-scanner/cover-photo-receipt-scanner-expanse-and-tax.png",
+      "/project/receipt-scanner/01-dashboard-overview.png",
+      "/project/receipt-scanner/02-receipt-management.png",
+      "/project/receipt-scanner/03-smart-scan.png",
+      "/project/receipt-scanner/04-receipt-review.png",
+      "/project/receipt-scanner/05-reporting-view.png",
+      "/project/receipt-scanner/06-settings-and-limits.png",
+    ],
+    tags: ["Flutter", "SQLite", "OCR", "Claude AI"],
+    content: `Receipt Scanner is a privacy-first, offline expense tracker built for people who want fast capture, clean reports, and full local control over their data.
+
+## Features
+
+- Offline-first workflow with local-only SQLite storage — no data ever leaves the device.
+- Receipt scanning from camera or gallery with OCR review before saving.
+- Personal and business expense tracking with custom categories.
+- Workspaces for trips, clients, or projects.
+- Tax-deductible tagging, refund and reimbursable tracking.
+- Clean reporting UI with CSV export.
+
+## Built With
+
+- **Flutter** — cross-platform mobile UI
+- **SQLite** — local-only data storage
+- **OCR Algorithm** — on-device text extraction
+- **Claude AI** — intelligent receipt parsing`,
   },
   {
     slug: "qamla-crew",
     name: "Qamla Crew",
     desc: "Worker management app — iOS & Android",
-    href: "https://apps.apple.com/us/app/qamlacrew/id6755341717",
+    appStore: "https://apps.apple.com/us/app/qamlacrew/id6755341717",
     date: "2024-09-01",
     featured: true,
     images: ["/project/qamla-crew.png"],
@@ -42,15 +67,35 @@ export const PROJECTS: Project[] = [
   {
     slug: "class-response-system",
     name: "Class Response System",
-    desc: "Real-time student engagement platform",
+    desc: "AI analytics & anonymous educational feedback",
     href: "https://classresponse.com/",
     date: "2024-03-01",
-    images: ["/project/class-response.png"],
-    tags: ["Next.js", "React", "TypeScript", "Firebase"],
-    content: `- Web-based platform enabling real-time student-teacher interaction during lectures.
-- Features live polls, quizzes, Q&A sessions, and attendance tracking.
-- Used at UCSI University Bangladesh to enhance classroom engagement.
-- Built with Next.js and Firebase for real-time data synchronization.`,
+    images: [
+      "/project/class-response/crs-dashboard.png",
+      "/project/class-response/crs-session-analytics.png",
+      "/project/class-response/crs-qr.png",
+    ],
+    tags: ["Next.js", "PostgreSQL", "AI Agent", "Claude Code"],
+    content: `Class Response System is an AI-powered educational feedback platform in production, built to transform how educators collect and understand student responses through intelligent analytics and CLO mapping.
+
+## My Role
+
+Full Stack Engineer — designed and developed the entire system end-to-end, from database schema to AI agent integration, using Claude Code.
+
+## Features
+
+- Anonymous response collection with real-time session management.
+- AI-powered analytics to surface insights from student feedback.
+- CLO (Course Learning Outcome) mapping for structured assessment.
+- QR-based session joining for frictionless student participation.
+- Dashboard with session analytics and response breakdowns.
+
+## Built With
+
+- **Next.js** — full-stack web framework
+- **PostgreSQL** — relational data storage
+- **AI Agent Development** — intelligent feedback analysis
+- **Claude Code** — developed end-to-end with AI assistance`,
   },
   {
     slug: "the-social-meet",

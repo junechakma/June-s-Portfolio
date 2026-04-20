@@ -1,22 +1,20 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
-const PLACEHOLDER_GRADIENTS = [
-  "from-violet-500/20 to-indigo-500/20",
-  "from-cyan-500/20 to-blue-500/20",
-  "from-emerald-500/20 to-teal-500/20",
-  "from-orange-500/20 to-amber-500/20",
-  "from-rose-500/20 to-pink-500/20",
-  "from-purple-500/20 to-violet-500/20",
-];
+// Spread hues evenly across the wheel using 15 distinct stops
+const HUE_STOPS = [0, 24, 48, 72, 96, 120, 150, 180, 210, 240, 265, 290, 315, 335, 355];
 
-function hashIndex(name: string) {
+function getBgColor(name: string): { light: string; dark: string } {
   let h = 0;
-  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) & 0xff;
-  return h % PLACEHOLDER_GRADIENTS.length;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  const hue = HUE_STOPS[h % HUE_STOPS.length];
+  return {
+    light: `hsl(${hue}, 65%, 91%)`,
+    dark: `hsl(${hue}, 22%, 20%)`,
+  };
 }
 
 type Props = {
@@ -28,7 +26,16 @@ type Props = {
 };
 
 export function ProjectImageCarousel({ images, name, href, priority, variant = "card" }: Props) {
-  const gradient = PLACEHOLDER_GRADIENTS[hashIndex(name)];
+  const bgColor = getBgColor(name);
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    const check = () => setIsDark(document.documentElement.classList.contains("dark"));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+  const bg = isDark ? bgColor.dark : bgColor.light;
   const hasImages = images && images.length > 0;
   const multi = hasImages && images.length > 1;
   const isDetail = variant === "detail";
@@ -98,15 +105,21 @@ export function ProjectImageCarousel({ images, name, href, priority, variant = "
       onMouseEnter={isDetail ? undefined : startAutoPlay}
       onMouseLeave={isDetail ? undefined : stopAutoPlay}
     >
+      {/* Pastel bg */}
+      <div className="absolute inset-0" style={{ backgroundColor: bg }} />
+
       {hasImages ? (
         <div
-          className={`flex ${animated ? "transition-transform duration-500 ease-in-out" : ""}`}
+          className={`relative flex ${animated ? "transition-transform duration-500 ease-in-out" : ""}`}
           style={{ transform: `translateX(-${pos * 100}%)` }}
           onTransitionEnd={onTransitionEnd}
           onTransitionStart={onTransitionStart}
         >
           {slides.map((src, i) => (
-            <div key={i} className="relative w-full shrink-0">
+            <div
+              key={i}
+              className={`relative w-full shrink-0 flex items-center justify-center ${isDetail ? "aspect-[16/9]" : "aspect-[1200/630]"}`}
+            >
               <Image
                 src={src}
                 alt={`${name} screenshot ${i}`}
@@ -115,14 +128,14 @@ export function ProjectImageCarousel({ images, name, href, priority, variant = "
                 quality={100}
                 priority={priority && i === 1}
                 unoptimized
-                className={`w-full object-cover ${isDetail ? "aspect-[16/9]" : "aspect-[1200/630]"}`}
+                className="h-full w-full object-contain p-3 rounded-[24px]"
               />
             </div>
           ))}
         </div>
       ) : (
         <div
-          className={`w-full bg-gradient-to-br ${gradient} flex items-end p-4 border border-edge ${isDetail ? "aspect-[16/9]" : "aspect-[1200/630]"}`}
+          className={`relative w-full flex items-end p-4 ${isDetail ? "aspect-[16/9]" : "aspect-[1200/630]"}`}
         >
           <span className="font-mono text-xs text-muted-foreground/60 truncate">
             {href?.replace(/^https?:\/\//, "") ?? name}
@@ -131,9 +144,7 @@ export function ProjectImageCarousel({ images, name, href, priority, variant = "
       )}
 
       {/* Ring overlay */}
-      {hasImages && (
-        <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
-      )}
+      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-black/10 ring-inset dark:ring-white/10" />
 
       {/* Prev / Next — detail only */}
       {multi && isDetail && (
@@ -168,9 +179,8 @@ export function ProjectImageCarousel({ images, name, href, priority, variant = "
                 setPos(i + 1);
               }}
               aria-label={`Go to image ${i + 1}`}
-              className={`rounded-full transition-all duration-200 ${
-                i === realIndex ? "w-4 h-1.5 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
-              }`}
+              className={`rounded-full transition-all duration-200 ${i === realIndex ? "w-4 h-1.5 bg-white" : "size-1.5 bg-white/50 hover:bg-white/80"
+                }`}
             />
           ))}
         </div>

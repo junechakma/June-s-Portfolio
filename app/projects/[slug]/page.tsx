@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeftIcon, ArrowUpRightIcon } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { PROJECTS, getProjectBySlug } from "@/data/projects";
 import { ProjectImageCarousel } from "@/components/project-image-carousel";
+import { Prose } from "@/components/ui/prose";
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -46,12 +49,6 @@ export default async function ProjectPage({
   const prev = idx > 0 ? PROJECTS[idx - 1] : null;
   const next = idx < PROJECTS.length - 1 ? PROJECTS[idx + 1] : null;
 
-  const bulletLines = project.content
-    ? project.content
-        .split("\n")
-        .filter((l) => l.startsWith("- "))
-        .map((l) => l.slice(2))
-    : [];
 
   return (
     <div className="mx-auto md:max-w-3xl border-x border-edge min-h-screen">
@@ -66,17 +63,46 @@ export default async function ProjectPage({
           Projects
         </Link>
 
-        {project.href && (
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors border border-edge rounded-md px-2.5 py-1"
-          >
-            Visit Site
-            <ArrowUpRightIcon className="size-3.5" />
-          </a>
-        )}
+        <div className="flex items-center gap-2">
+          {project.comingSoon && (
+            <span className="font-mono text-xs text-muted-foreground border border-dashed border-edge rounded-md px-2.5 py-1">
+              Coming Soon
+            </span>
+          )}
+          {!project.comingSoon && project.appStore && (
+            <a
+              href={project.appStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors border border-edge rounded-md px-2.5 py-1"
+            >
+              App Store
+              <ArrowUpRightIcon className="size-3.5" />
+            </a>
+          )}
+          {!project.comingSoon && project.playStore && (
+            <a
+              href={project.playStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors border border-edge rounded-md px-2.5 py-1"
+            >
+              Play Store
+              <ArrowUpRightIcon className="size-3.5" />
+            </a>
+          )}
+          {!project.comingSoon && project.href && !project.appStore && !project.playStore && (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground hover:text-foreground transition-colors border border-edge rounded-md px-2.5 py-1"
+            >
+              Visit Site
+              <ArrowUpRightIcon className="size-3.5" />
+            </a>
+          )}
+        </div>
       </div>
 
       {/* ── Diagonal pattern strip ── */}
@@ -102,7 +128,7 @@ export default async function ProjectPage({
       </div>
 
       {/* ── Title & meta ── */}
-      <div className="px-4 pb-4 screen-line-after">
+      <div className="px-4 pt-4 pb-4 screen-line-after">
         <h1 className="text-3xl font-semibold leading-tight mb-2">
           {project.name}
           {project.featured && (
@@ -134,28 +160,12 @@ export default async function ProjectPage({
       )}
 
       {/* ── Content ── */}
-      {bulletLines.length > 0 && (
-        <div className="px-4 py-4 screen-line-after">
-          <ul className="space-y-2">
-            {bulletLines.map((line, i) => {
-              const parts = line.split(/(\*\*[^*]+\*\*)/g);
-              return (
-                <li key={i} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
-                  <span className="mt-1.5 size-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                  <span>
-                    {parts.map((part, j) =>
-                      part.startsWith("**") && part.endsWith("**") ? (
-                        <strong key={j} className="text-foreground font-medium">{part.slice(2, -2)}</strong>
-                      ) : (
-                        part
-                      )
-                    )}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+      {project.content && (
+        <Prose className="px-4 py-6 screen-line-after">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {project.content}
+          </ReactMarkdown>
+        </Prose>
       )}
 
       {/* ── Prev / Next ── */}
