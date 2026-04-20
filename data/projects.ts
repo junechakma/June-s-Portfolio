@@ -2,6 +2,7 @@ export type Project = {
   slug: string;
   name: string;
   desc: string;
+  category: "app" | "website";
   href?: string;
   appStore?: string;
   playStore?: string;
@@ -19,6 +20,7 @@ export const PROJECTS: Project[] = [
     slug: "receipt-scanner",
     name: "Receipt Scanner",
     desc: "Privacy-first offline receipt & expense tracker",
+    category: "app",
     comingSoon: true,
     date: "2024-06-01",
     featured: true,
@@ -54,6 +56,7 @@ export const PROJECTS: Project[] = [
     slug: "qamla-crew",
     name: "Qamla Crew",
     desc: "Worker management app — iOS & Android",
+    category: "app",
     appStore: "https://apps.apple.com/us/app/qamlacrew/id6755341717",
     date: "2024-09-01",
     featured: true,
@@ -68,6 +71,7 @@ export const PROJECTS: Project[] = [
     slug: "class-response-system",
     name: "Class Response System",
     desc: "AI analytics & anonymous educational feedback",
+    category: "website",
     href: "https://classresponse.com/",
     date: "2024-03-01",
     images: [
@@ -101,6 +105,7 @@ Full Stack Engineer — designed and developed the entire system end-to-end, fro
     slug: "the-social-meet",
     name: "The Social Meet",
     desc: "A personalized social messaging app",
+    category: "app",
     href: "https://www.thesocialmeet.com/",
     date: "2023-11-01",
     images: [
@@ -143,6 +148,7 @@ Full-Stack Engineer — built the entire mobile app and backend infrastructure a
     slug: "changmabhach",
     name: "ChangmaBhach",
     desc: "ML-powered Chakma language learning app",
+    category: "app",
     href: "https://june-chakma.vercel.app/apps/changmabhach.html",
     date: "2023-08-01",
     images: [
@@ -184,15 +190,22 @@ Full-Stack Engineer — built the mobile app, trained the ML model, and integrat
     slug: "buddhimotta",
     name: "Buddhimotta",
     desc: "Multiple intelligence assessment app",
+    category: "app",
     href: "https://june-chakma.vercel.app/apps/changmabhach.html",
     date: "2023-05-01",
     images: [
-      "/project/buddhimotta.png",
-      "/project/app-images/buddhimotta2.png",
-      "/project/app-images/buddhimotta3.png",
-      "/project/app-images/buddhimotta4.png",
-      "/project/app-images/buddhimotta5.png",
-      "/project/app-images/buddhimotta6.png",
+      "/project/buddhimotta/buddhimotta.png",
+      "/project/buddhimotta/buddhimotta2.png",
+      "/project/buddhimotta/buddhimotta3.png",
+      "/project/buddhimotta/buddhimotta4.png",
+      "/project/buddhimotta/buddhimotta5.png",
+      "/project/buddhimotta/buddhimotta6.png",
+      "/project/buddhimotta/buddhimotta7.png",
+      "/project/buddhimotta/buddhimotta8.png",
+      "/project/buddhimotta/buddhimotta9.png",
+      "/project/buddhimotta/buddhimotta10.png",
+      "/project/buddhimotta/buddhimotta11.png",
+      "/project/buddhimotta/buddhimotta12.png",
     ],
     tags: ["Flutter", "Dart", "Firebase"],
     content: `- Mobile application based on Howard Gardner's Theory of Multiple Intelligences.
@@ -204,6 +217,7 @@ Full-Stack Engineer — built the mobile app, trained the ML model, and integrat
     slug: "mitschke-immo",
     name: "Mitschke Immo",
     desc: "Real estate website design & development",
+    category: "website",
     href: "https://mitschke-immo.de/",
     date: "2024-01-01",
     images: [
@@ -238,6 +252,7 @@ Full-Stack Engineer — designed and developed the full website from UI to backe
     slug: "wexford",
     name: "Wexford",
     desc: "Education consultancy website for UK study abroad",
+    category: "website",
     href: "https://wexford.com/",
     date: "2024-05-01",
     images: [
@@ -272,6 +287,7 @@ Frontend Engineer — built the full website UI with a focus on lead generation 
     slug: "compileq",
     name: "CompileQ",
     desc: "Corporate website — UK-based company",
+    category: "website",
     href: "https://compileq.co.uk/",
     date: "2024-04-01",
     images: ["/project/compileq.png"],
@@ -285,6 +301,7 @@ Frontend Engineer — built the full website UI with a focus on lead generation 
     slug: "fly-the-plane",
     name: "Fly the Plane",
     desc: "Interactive 3D web game",
+    category: "website",
     href: "http://fly-the-plane.vercel.app/",
     date: "2023-07-01",
     images: ["/project/fly-the-plane.png"],
@@ -298,6 +315,7 @@ Frontend Engineer — built the full website UI with a focus on lead generation 
     slug: "limoncello-london",
     name: "Limoncello London",
     desc: "Restaurant website",
+    category: "website",
     href: "https://limoncellolondon.co.uk/",
     date: "2023-12-01",
     images: ["/project/lemoncello.png"],
