@@ -10,9 +10,13 @@ function getContent() {
 
 June Chakma is a frontend-focused fullstack developer with expertise in React.js, Next.js, Flutter, and JavaScript — building web and mobile applications with a focus on clean architecture and attention to detail.
 
-Co-founder of Wydiz — a results-driven web studio delivering premium websites in a 7–10 day sprint.
-
-Delivered projects for 25+ international clients on Fiverr and Upwork. Currently serving as Lab In-Charge & Assistant to the Dean at UCSI University Bangladesh, and working contractually as a Web Developer for the B-JET program.
+- Co-founder of **Wydiz** — a results-driven web studio delivering premium websites in a 7–10 day sprint: clear offers, clean design, strong CTAs, and mobile-first performance built for businesses that need results, not just aesthetics.
+- Delivered projects for 25+ international clients on Fiverr and Upwork; worked as Jr. Frontend Developer at CompileQ and currently serving as Lab In-Charge & Assistant to the Dean at UCSI University BD.
+- Completed the B-JET (Bangladesh-Japan ICT Engineers' Training Program) 6-month training and currently working contractually as a Web Developer for the program — grooming Bangladeshi ICT engineers for the Japanese IT sector.
+- Proficient in AI-assisted development using Claude Code, Cursor, and Windsurf — leveraging ChatGPT, Claude, Gemini, and Grok to streamline coding, debugging, and optimization.
+- Creator of ChangmaBhach: an ML-powered mobile app for Chakma language learning built with Flutter and TensorFlow Lite.
+- Co-authored a research paper (under review at Elsevier SSHO) and co-wrote a book showcased at Amar Ekushey Book Fair 2024 — combining technical expertise with an Educational Technology background.
+- Mission: Creating software that delivers exceptional user experiences while constantly adapting to stay at the forefront of technology.
 
 ### Personal Information
 
@@ -23,6 +27,10 @@ Delivered projects for 25+ international clients on Fiverr and Upwork. Currently
 - Phone: +8801533552438
 - Portfolio: https://june-chakma.vercel.app
 - GitHub: https://github.com/junechakma
+
+### Portfolio Easter Egg
+
+The portfolio homepage features a fully playable Snake game embedded in the cover banner. Visitors can play it directly in the browser using arrow keys or WASD. It includes sound effects and progressively speeds up as the score increases. This is a signature touch of June's personality — blending technical craft with a sense of fun.
 `;
 
   const techStackText = `## Tech Stack

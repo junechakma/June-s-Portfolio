@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# june-chakma.vercel.app
+
+A minimal, fast portfolio built with Next.js — showcasing the work of June Chakma, a fullstack & mobile developer from Dhaka, Bangladesh.
+
+## Stack
+
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Language:** TypeScript
+- **Deployment:** Vercel
+
+## Features
+
+- Playable Snake game embedded in the cover banner (arrow keys or WASD)
+- GitHub contribution graph
+- Project showcase with image carousels and filtering
+- Command menu search (`⌘K`)
+- Dark / light theme toggle
+- LLM-friendly routes: `/llms.txt` and `/llms-full.txt`
+- Fully responsive and mobile-first
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/          # Next.js App Router pages and API routes
+components/   # UI components (snake game, project cards, panels, etc.)
+data/         # Content — projects, experiences, education, achievements
+public/       # Static assets and project images
+```
 
-## Learn More
+## LLM Text
 
-To learn more about Next.js, take a look at the following resources:
+The portfolio exposes machine-readable content for AI assistants:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/llms.txt` — quick overview
+- `/llms-full.txt` — full profile including experience, education, projects, training, and achievements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+MIT © [June Chakma](https://june-chakma.vercel.app)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Inspired by [abdulrehmanwaseem/My-Portfolio](https://github.com/abdulrehmanwaseem/My-Portfolio).
